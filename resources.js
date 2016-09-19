@@ -16,15 +16,11 @@ const push = (socket, videoId, url) => {
     resources.push({socket, videoId, url});
 };
 
-const remove = socket => {
-    _.remove(resources, function(resource) {
-        return resource.socket === socket;
-    });
-};
+const remove = socket => _.remove(resources, resource => resource.socket === socket);
 
 const query = videoId => {
 
-    //随机算法
+    //随机算法替换
     const resource = _.findLast(resources, resource => resource.videoId === videoId);
     if(resource) return resource.url;
 
